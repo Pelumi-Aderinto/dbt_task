@@ -46,4 +46,4 @@ ON so.Customer_Name_Index = cu.Customer_Index
 inner join products pr
 ON so.Product_Description_Index = pr.Index
 inner join regions re
-ON so.Delivery_Region_Index = re.Index;
+ON so.Delivery_Region_Index = re.Index
