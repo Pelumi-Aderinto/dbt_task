@@ -1,21 +1,21 @@
 {{ config(materialized='table') }}
 
-with customers as (
+customers as (
     select *
     from {{ source('staging','customers') }}
 ), 
 
-with products as (
+products as (
     select *
     from {{ source('staging','products') }}
 ), 
 
-with regions as (
+regions as (
     select *
     from {{ source('staging','regions') }}
 ), 
 
-with sales_orders as (
+sales_orders as (
     select *
     from {{ source('staging','sales_orders') }}
 )
@@ -40,10 +40,10 @@ so.Order_Quantity * so.Total_Unit_Cost as Total_Cost,
 so.Line_Total - so.Order_Quantity * so.Total_Unit_Cost as Total_Profit,
 cast(so.Line_Total - so.Order_Quantity * so.Total_Unit_Cost as numeric)/so.Line_Total as Profit_Margin
 
-from assessment.sales_orders so
-inner join assessment.customers cu 
+from sales_orders so
+inner join customers cu 
 ON so.Customer_Name_Index = cu.Customer_Index
-inner join assessment.products pr
+inner join products pr
 ON so.Product_Description_Index = pr.Index
-inner join assessment.regions re
+inner join regions re
 ON so.Delivery_Region_Index = re.Index;
