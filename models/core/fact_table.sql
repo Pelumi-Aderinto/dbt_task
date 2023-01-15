@@ -1,6 +1,6 @@
 {{ config(materialized='table') }}
 
-customers as (
+with customers as (
     select *
     from {{ source('staging','customers') }}
 ), 
