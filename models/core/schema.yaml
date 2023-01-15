@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+    - name: staging
+      #For bigquery:
+      database: nodal-seer-374614
+
+      # For postgres:
+      # database: production
+
+      schema: assessment
+
+      # loaded_at_field: record_loaded_at
+      tables:
+        - name: customers
+        - name: products
+        - name: regions
+        - name: sales_orders
+         # freshness:
+           # error_after: {count: 6, period: hour}
